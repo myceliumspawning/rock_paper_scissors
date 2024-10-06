@@ -3,6 +3,10 @@ let randomNumber = Math.floor((Math.random()) * 100);
 
 console.log(randomNumber);
 
+// Create and INITIALIZE variables for human and computer scores
+let humanScore = 0;
+let computerScore = 0;
+
 // Create a function called getComputerChoice that generates rock, paper or scissors
 function getComputerChoice() {
     // IF random number is between 0 and 33 inclusive, RETURN computer's choice as rock
@@ -24,16 +28,15 @@ function getHumanChoice() {
     // Convert input to lowercase
     let humanSelection = (prompt("Select \'rock\', \'paper\' or \'scissors\'.")).toLowerCase();
 
+    // IF input is acceptable, store its value
+    // ELSE print error message and go back to prompting
     if (humanSelection === "rock" || humanSelection === "paper" || humanSelection === "scissors") {
         return humanSelection;
     } else {
         console.log("There was an error. Please select \'rock\', \'paper\' or \'scissors\'.");
+        getHumanChoice();
     }
 }
-
-// Create and INITIALIZE variables for human and computer scores
-let humanScore = 0;
-let computerScore = 0;
 
 // Create a function to play the game numberofTimes times
 function playGame (numberofTimes) {
