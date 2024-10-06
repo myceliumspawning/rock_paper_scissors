@@ -1,14 +1,16 @@
-// Generate a random number between 0 and 100
-let randomNumber = Math.floor((Math.random()) * 100);
+// Create and initialize random number storage
+let randomNumber = 0;
 
-console.log(randomNumber);
-
-// Create and INITIALIZE variables for human and computer scores
-let humanScore = 0;
-let computerScore = 0;
+// Create function that enables random numbers to be created
+function randomRoll() {
+    return randomNumber = Math.floor((Math.random()) * 100);
+}
 
 // Create a function called getComputerChoice that generates rock, paper or scissors
 function getComputerChoice() {
+    // Generate a random number between 0 and 100
+    randomRoll();
+
     // IF random number is between 0 and 33 inclusive, RETURN computer's choice as rock
     // ELSEIF random number is between 34 and 66 inclusive, RETURN computer's choice as paper
     // ELSE RETURN computer's choice as scissors
@@ -20,6 +22,10 @@ function getComputerChoice() {
         return "scissors";
     }
 }
+
+// Create and INITIALIZE variables for human and computer scores
+let humanScore = 0;
+let computerScore = 0;
 
 // Create a function called getHumanChoice that allows a human to input rock, paper or scissors
 function getHumanChoice() {
@@ -69,8 +75,10 @@ function playGame (numberofTimes) {
             } else if (humanChoice === "scissors" && computerChoice === "rock") {
                 computerScore += 1;
                 console.log("You lose!");
-            } else {
+            } else if (humanChoice === computerChoice) {
                 console.log("It's a tie!");
+            } else {
+                console.log("This doesn't count!");
             }
         }
 
