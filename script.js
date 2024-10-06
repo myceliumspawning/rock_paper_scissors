@@ -33,13 +33,13 @@ function getHumanChoice() {
     // Ask human for their input
     // Convert input to lowercase
     let humanSelection = (prompt("Select \'rock\', \'paper\' or \'scissors\'.")).toLowerCase();
-
     // IF input is acceptable, store its value
     // ELSE print error message and go back to prompting
     if (humanSelection === "rock" || humanSelection === "paper" || humanSelection === "scissors") {
         return humanSelection;
     } else {
         console.log("There was an error. Please select \'rock\', \'paper\' or \'scissors\'.");
+        console.log("This round doesn't count.");
         getHumanChoice();
     }
 }
@@ -75,10 +75,8 @@ function playGame (numberofTimes) {
             } else if (humanChoice === "scissors" && computerChoice === "rock") {
                 computerScore += 1;
                 console.log("You lose!");
-            } else if (humanChoice === computerChoice) {
-                console.log("It's a tie!");
             } else {
-                console.log("This doesn't count!");
+                console.log("It's a tie!");
             }
         }
 
@@ -87,10 +85,18 @@ function playGame (numberofTimes) {
         
         playRound(humanSelection, computerSelection);
 
-        console.log(humanSelection, computerSelection);
-        console.log(humanScore, computerScore); 
+        console.log("You played " + humanSelection + ", while the computer played " + computerSelection);
+        console.log("Your current score is " + humanScore, ", while the computer's score is " + computerScore); 
         }
 
 } 
 
 playGame(5);
+
+if (humanScore > computerScore) {
+    console.log("You win overall!");
+} else if (humanScore < computerScore) {
+    console.log("The computer won overall!");
+} else {
+    console.log("It's a tie overall!");
+}
