@@ -32,16 +32,11 @@ function getHumanChoice() {
     // INTIALIZE a variable for the human's selection
     // Ask human for their input
     // Convert input to lowercase
-    let humanSelection = (prompt("Select \'rock\', \'paper\' or \'scissors\'.")).toLowerCase();
-    // IF input is acceptable, store its value
-    // ELSE print error message and go back to prompting
-    if (humanSelection === "rock" || humanSelection === "paper" || humanSelection === "scissors") {
+    do {
+        humanSelection = (prompt("Select \'rock\', \'paper\' or \'scissors\'.")).toLowerCase(); 
         return humanSelection;
-    } else {
-        console.log("There was an error. Please select \'rock\', \'paper\' or \'scissors\'.");
-        console.log("This round doesn't count.");
-        getHumanChoice();
-    }
+      }
+    while (humanSelection !== "rock" || humanSelection !== "paper" || humanSelection !== "scissors");
 }
 
 // Create a function to play the game numberofTimes times
@@ -75,6 +70,11 @@ function playGame (numberofTimes) {
             } else if (humanChoice === "scissors" && computerChoice === "rock") {
                 computerScore += 1;
                 console.log("You lose!");
+            } else if (humanChoice !== "rock" || humanChoice !== "paper" || humanChoice !== "scissors") {
+                humanScore += 0;
+                computerScore += 0;
+                console.log("I didn't understand that, please select \'rock\', \'paper\' or \'scissors\'.");
+                i--;
             } else {
                 console.log("It's a tie!");
             }
@@ -86,7 +86,7 @@ function playGame (numberofTimes) {
         playRound(humanSelection, computerSelection);
 
         console.log("You played " + humanSelection + ", while the computer played " + computerSelection);
-        console.log("Your current score is " + humanScore, ", while the computer's score is " + computerScore); 
+        console.log("Your current score is " + humanScore + ", while the computer's score is " + computerScore); 
         }
 
 } 
