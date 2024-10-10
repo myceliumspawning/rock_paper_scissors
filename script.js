@@ -26,13 +26,13 @@ buttons.forEach((button) => {
     button.addEventListener("click", () => {
         humanSelection = button.id;
         computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
         
         const revealSelection = document.createElement("div");
         body.appendChild(revealSelection);
 
         revealSelection.textContent = "You played " + humanSelection + ", while the computer played " + computerSelection + ".";
-
-        playRound(humanSelection, computerSelection);
 
         const revealScore = document.createElement("div");
         body.appendChild(revealScore);
@@ -48,27 +48,15 @@ let computerScore = 0;
 let winflag;
 
 function playRound(humanChoice, computerChoice) {        
-    if (humanChoice === "rock" && computerChoice === "scissors") {
+    if (humanChoice === "rock" && computerChoice === "scissors" ||
+        humanChoice === "paper" && computerChoice === "rock" ||
+        humanChoice === "scissors" && computerChoice === "paper") {
         humanScore += 1;
         winflag = 1;
         roundWin(); 
-    } else if (humanChoice === "rock" && computerChoice === "paper") {
-        computerScore += 1;
-        winflag = 0;
-        roundWin();
-    } else if (humanChoice === "paper" && computerChoice === "scissors") {
-        computerScore += 1;
-        winflag = 0;
-        roundWin();
-    } else if (humanChoice === "paper" && computerChoice === "rock") {
-        humanScore += 1;
-        winflag = 1;
-        roundWin();
-    } else if (humanChoice === "scissors" && computerChoice === "paper") {
-        humanScore += 1;
-        winflag = 1;
-        roundWin();
-    } else if (humanChoice === "scissors" && computerChoice === "rock") {
+    } else if (humanChoice === "rock" && computerChoice === "paper" ||
+                humanChoice === "paper" && computerChoice === "scissors" ||
+                humanChoice === "scissors" && computerChoice === "rock") {
         computerScore += 1;
         winflag = 0;
         roundWin();
@@ -94,6 +82,7 @@ function roundWin() {
 function checkEnd() {
     if (humanScore == 5 || computerScore == 5) {
         displayWin();
+        buttons.forEach((button) => { button.disabled = true });
     } else {
         return;
     }
